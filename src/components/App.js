@@ -6,18 +6,24 @@ import { useEffect, useState } from 'react';
 import CharacterList from './CharacterList';
 import CharacterCard from './CharacterCard';
 import Filter from './Filter'
-import getDataFromApi from './services/Api';
+import getDataFromApi from '../services/Api';
 
 function App() {
 
   const [data, setData] = useState([]);
-  const [searchName, setSearchName] = useState();
+  const [searchName, setSearchName] = useState('');
+  const [errorSearch, setErrorSearch] = useState('');
+
+
 
   useEffect(() => {
     getDataFromApi('Gryffindor').then((responseData) => {
+
+      //Aquí estoy metiendo los datos de la respuesta de la Api en variable data:
       setData(responseData)
     })
   }, []);
+
 
   const renderList = () => {
     return data
@@ -25,27 +31,44 @@ function App() {
       .filter((eachCharacter) => {
         return eachCharacter.name.toLowerCase().includes(searchName.toLowerCase())
       })
-
       .map((eachCharacter, i) => (
-        <li key={i}>
+        < li key={i} >
           {eachCharacter.image ? <img src={eachCharacter.image} alt="character"></img> : <img alt="character" src="https://via.placeholder.com/210x295/4634a3/ffffff/?text=HarryPotter"></img>}
-          <p>{eachCharacter.name}</p>
+          <p> {eachCharacter.name}</p>
           <p>{eachCharacter.species}</p>
-        </li>
+        </li >
       ))
   }
 
-  const handleSearchName = (ev) => {
+
+  const handleFilterName = (ev) => {
+    { /* console.log(data)
+    if (searchName === data.name) {
+      setErrorSearch('')
+    } else {
+      setErrorSearch('No existe ningún personaje con ese nombre, prueba de nuevo con otro')
+    } */ }
     setSearchName(ev.target.value)
+  }
+
+  const handleKeyDown = (ev) => {
+    if (ev.key === 'Enter') {
+      ev.preventDefault();
+    }
+  }
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault()
   }
 
   return (
     <div >
       <header></header>
       <main>
-        <form>
+
+        <form onChange={handleSubmit}>
           <label>Busca por personaje:</label>
-          <input onInput={handleSearchName} placeholder="Harry..." type="text"></input>
+          <input onKeyDown={handleKeyDown} onChange={handleFilterName} placeholder="Harry..." type="text" />
 
           <label>Selecciona la casa:</label>
           <select>
@@ -55,6 +78,8 @@ function App() {
             <option value="Hufflepuff">Hufflepuff</option>
           </select>
         </form>
+
+        { /* <span>{setErrorSearch}</span> */}
 
         <ul>{renderList()}</ul>
 
