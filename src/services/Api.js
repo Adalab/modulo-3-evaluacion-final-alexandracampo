@@ -8,7 +8,8 @@ const getDataFromApi = (house) => {
                     name: eachCharacter.name,
                     species: eachCharacter.species,
                     id: eachCharacter.id,
-                    house: eachCharacter.house
+                    house: eachCharacter.house,
+                    vivo: eachCharacter.alive
                 };
             });
             return cleanData;

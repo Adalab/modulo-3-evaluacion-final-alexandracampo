@@ -1,6 +1,3 @@
-//import '../styles/App.scss';
-//import data from '../data/data .json' //para llamar a los datos
-//import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CharacterList from './CharacterList';
@@ -13,16 +10,16 @@ function App() {
   const [data, setData] = useState([]);
   const [searchName, setSearchName] = useState('');
   const [errorSearch, setErrorSearch] = useState('');
+  const [selectedHouse, setSelectedHouse] = useState('Gryffindor');
 
 
 
   useEffect(() => {
-    getDataFromApi('Gryffindor').then((responseData) => {
-
+    getDataFromApi(selectedHouse).then((responseData) => {
       //Aquí estoy metiendo los datos de la respuesta de la Api en variable data:
       setData(responseData)
     })
-  }, []);
+  }, [selectedHouse]);
 
 
   const renderList = () => {
@@ -31,6 +28,7 @@ function App() {
       .filter((eachCharacter) => {
         return eachCharacter.name.toLowerCase().includes(searchName.toLowerCase())
       })
+
       .map((eachCharacter, i) => (
         < li key={i} >
           {eachCharacter.image ? <img src={eachCharacter.image} alt="character"></img> : <img alt="character" src="https://via.placeholder.com/210x295/4634a3/ffffff/?text=HarryPotter"></img>}
@@ -40,15 +38,24 @@ function App() {
       ))
   }
 
-
   const handleFilterName = (ev) => {
-    { /* console.log(data)
-    if (searchName === data.name) {
-      setErrorSearch('')
-    } else {
-      setErrorSearch('No existe ningún personaje con ese nombre, prueba de nuevo con otro')
-    } */ }
     setSearchName(ev.target.value)
+
+    //Creamos un filtro para que salte un mensaje si lo que se escribe en el input no existe en la API:
+    const filteredData = data.filter((eachCharacter) => {
+      return eachCharacter.name.toLowerCase().includes(ev.target.value.toLowerCase());
+    });
+
+    //Si la longitud del dato filtrado es 0 (no hay ningún resultado) sale el mensaje. De lo contrario lo quita.
+    if (filteredData.length === 0) {
+      setErrorSearch('No hay ningún personaje con ese nombre. Prueba con otro...');
+    } else {
+      setErrorSearch('');
+    }
+  };
+
+  const handleFilterHouse = (ev) => {
+    setSelectedHouse(ev.target.value)
   }
 
   const handleKeyDown = (ev) => {
@@ -71,15 +78,14 @@ function App() {
           <input onKeyDown={handleKeyDown} onChange={handleFilterName} placeholder="Harry..." type="text" />
 
           <label>Selecciona la casa:</label>
-          <select>
+          <select onChange={handleFilterHouse}>
             <option value="Gryffindor">Gryffindor</option>
             <option value="Ravenclaw">Ravenclaw</option>
             <option value="Slytherin">Slytherin</option>
             <option value="Hufflepuff">Hufflepuff</option>
           </select>
         </form>
-
-        { /* <span>{setErrorSearch}</span> */}
+        <span>{errorSearch}</span>
 
         <ul>{renderList()}</ul>
 
@@ -92,6 +98,5 @@ function App() {
       <footer></footer>
     </div>
   );
-
 }
 export default App;
