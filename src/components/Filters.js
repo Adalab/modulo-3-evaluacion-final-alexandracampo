@@ -1,4 +1,4 @@
-function Filters({ data, setErrorSearch, setSelectedHouse, errorSearch, setSearchName }) {
+function Filters({ data, setErrorSearch, setSelectedHouse, errorSearch, setSearchName, searchName }) {
 
     const handleFilterName = (ev) => {
         setSearchName(ev.target.value)
@@ -30,12 +30,11 @@ function Filters({ data, setErrorSearch, setSelectedHouse, errorSearch, setSearc
         ev.preventDefault()
     }
 
-
     return (
         <>
             <form onChange={handleSubmit}>
                 <label>Busca por personaje:</label>
-                <input onKeyDown={handleKeyDown} onChange={handleFilterName} placeholder="Harry..." type="text" />
+                <input value={searchName} onKeyDown={handleKeyDown} onChange={handleFilterName} placeholder="Harry..." type="text" />
 
                 <label>Selecciona la casa:</label>
                 <select onChange={handleFilterHouse}>

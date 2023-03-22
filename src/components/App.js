@@ -1,9 +1,11 @@
+import '../styles/App.scss'
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CharacterList from './CharacterList';
-import CharacterCard from './CharacterCard';
+import CharacterDetail from './CharacterDetail';
 import Filters from './Filters'
 import getDataFromApi from '../services/Api';
+import { useLocation } from 'react-router-dom';
 
 function App() {
 
@@ -11,7 +13,6 @@ function App() {
   const [searchName, setSearchName] = useState('');
   const [errorSearch, setErrorSearch] = useState('');
   const [selectedHouse, setSelectedHouse] = useState('Gryffindor');
-
 
   useEffect(() => {
     getDataFromApi(selectedHouse).then((responseData) => {
@@ -23,7 +24,9 @@ function App() {
 
   return (
     <div >
-      <header></header>
+      <header className='header'>
+        <h1>Header</h1>
+      </header>
       <main>
         <Routes>
           <Route path="/" element={<>
@@ -33,6 +36,7 @@ function App() {
               setSelectedHouse={setSelectedHouse}
               errorSearch={errorSearch}
               setSearchName={setSearchName}
+              searchName={searchName}
             >
             </Filters>
 
@@ -42,14 +46,14 @@ function App() {
             > </CharacterList>  </>}>
           </Route>
 
-          <Route path="/detail/:id" element={<CharacterCard></CharacterCard>}></Route>
+          <Route path='/character/:characterId' element={<CharacterDetail data={data} ></CharacterDetail>}></Route>
         </Routes>
 
 
-
       </main>
-      <footer></footer>
-    </div>
+      <footer className='footer'>
+      </footer>
+    </div >
   );
 }
 export default App;
