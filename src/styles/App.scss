@@ -1,10 +1,62 @@
-.header {
-  background-color: rgb(112, 204, 173);
-  height: 6rem;
-  margin-bottom: 1rem;
+$font: "Harry Potter", sans-serif;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* .footer {
-  background-color: rgb(230, 150, 181);
-  height: 6rem;
-} */
+body {
+  background-image: url(../images/fondo6.jpg);
+}
+
+.header {
+  background-color: #000000;
+  color: white;
+  height: 12rem;
+  font-family: $font;
+
+  .title-header {
+    display: flex;
+    padding-top: 5rem;
+  }
+}
+
+.box-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(116, 0, 1, 0.8);
+  height: 10rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: solid 4px rgb(107, 3, 3);
+
+  .filter-one {
+    border: none;
+    font-family: $font;
+    font-weight: 500;
+    margin-left: 3rem;
+
+    .label-one {
+    }
+    .input-name {
+      font-family: $font;
+    }
+  }
+
+  .filter-two {
+    border: none;
+    font-weight: 500;
+    padding-top: 1rem;
+    font-family: $font;
+
+    .label-two {
+    }
+    .select {
+      width: 50%;
+      font-family: $font;
+    }
+  }
+}

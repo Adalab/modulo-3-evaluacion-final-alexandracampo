@@ -25,10 +25,11 @@ function App() {
   return (
     <div >
       <header className='header'>
-        <h1>Header</h1>
+        <h1 className="title-header">Welcome to Hogwarts</h1>
       </header>
       <main>
         <Routes>
+
           <Route path="/" element={<>
             <Filters
               data={data}

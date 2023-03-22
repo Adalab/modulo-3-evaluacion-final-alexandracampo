@@ -32,17 +32,23 @@ function Filters({ data, setErrorSearch, setSelectedHouse, errorSearch, setSearc
 
     return (
         <>
-            <form onChange={handleSubmit}>
-                <label>Busca por personaje:</label>
-                <input value={searchName} onKeyDown={handleKeyDown} onChange={handleFilterName} placeholder="Harry..." type="text" />
+            <form className="box-form" onChange={handleSubmit}>
 
-                <label>Selecciona la casa:</label>
-                <select onChange={handleFilterHouse}>
-                    <option value="Gryffindor">Gryffindor</option>
-                    <option value="Ravenclaw">Ravenclaw</option>
-                    <option value="Slytherin">Slytherin</option>
-                    <option value="Hufflepuff">Hufflepuff</option>
-                </select>
+                <fieldset className="filter-one">
+                    <label className="label-one">Busca por personaje:</label>
+                    <input className="input-name" value={searchName} onKeyDown={handleKeyDown} onChange={handleFilterName} placeholder="Harry..." type="text" />
+                </fieldset>
+
+                <fieldset className="filter-two">
+                    <label className="label-two">Selecciona la casa:</label>
+                    <select className="select" onChange={handleFilterHouse}>
+                        <option value="Gryffindor">Gryffindor</option>
+                        <option value="Ravenclaw">Ravenclaw</option>
+                        <option value="Slytherin">Slytherin</option>
+                        <option value="Hufflepuff">Hufflepuff</option>
+                    </select>
+                </fieldset>
+
             </form>
 
             <span>{errorSearch}</span>
