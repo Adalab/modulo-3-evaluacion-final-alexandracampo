@@ -5,7 +5,6 @@ import CharacterList from './CharacterList';
 import CharacterDetail from './CharacterDetail';
 import Filters from './Filters'
 import getDataFromApi from '../services/Api';
-import { useLocation } from 'react-router-dom';
 
 function App() {
 
@@ -47,7 +46,13 @@ function App() {
             > </CharacterList>  </>}>
           </Route>
 
-          <Route path='/character/:characterId' element={<CharacterDetail className="detail-main" data={data} ></CharacterDetail>}></Route>
+          <Route path='/character/:characterId' element={
+            <CharacterDetail className="detail-main"
+              data={data}
+              setData={setData}
+            >
+
+            </CharacterDetail>}></Route>
         </Routes>
 
 

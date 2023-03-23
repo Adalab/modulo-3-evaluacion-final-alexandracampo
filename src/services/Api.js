@@ -1,5 +1,7 @@
 const getDataFromApi = (house) => {
-    return fetch(`https://hp-api.onrender.com/api/characters/house/${house}`)
+    const byHouse = house ? `/house/${house}` : '';
+
+    return fetch(`https://hp-api.onrender.com/api/characters${byHouse}`)
         .then((response) => response.json())
         .then((dataApi) => {
             const cleanData = dataApi.map((eachCharacter) => {
