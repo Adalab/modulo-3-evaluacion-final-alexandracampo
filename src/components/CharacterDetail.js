@@ -38,6 +38,8 @@ function CharacterDetail({ data, setData }) {
                 </div>
             </div>
         );
+    } else {
+        <p>Error fatal, vendrá Dobby y 100 años de mala suerte</p>
     }
 }
 
