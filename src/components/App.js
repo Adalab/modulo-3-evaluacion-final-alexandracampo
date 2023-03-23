@@ -47,13 +47,12 @@ function App() {
             > </CharacterList>  </>}>
           </Route>
 
-          <Route path='/character/:characterId' element={<CharacterDetail data={data} ></CharacterDetail>}></Route>
+          <Route path='/character/:characterId' element={<CharacterDetail className="detail-main" data={data} ></CharacterDetail>}></Route>
         </Routes>
 
 
       </main>
-      <footer className='footer'>
-      </footer>
+
     </div >
   );
 }

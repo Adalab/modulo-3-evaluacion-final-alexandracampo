@@ -31,6 +31,7 @@ body {
   flex-direction: column;
   background-color: rgb(128, 17, 19);
   height: 12rem;
+  margin-bottom: 2rem;
 
   .fieldset {
     border: none;
@@ -87,6 +88,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   .link {
     width: 18rem;
@@ -116,5 +118,26 @@ body {
         padding-bottom: 7px;
       }
     }
+  }
+}
+
+.detail-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  width: 30rem;
+  height: 20rem;
+  margin: 2rem;
+  font-family: $font;
+  border-radius: 10px;
+
+  .detail-img {
+    border-radius: 10px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    height: 15rem;
+    width: 10rem;
+    object-fit: cover;
   }
 }
