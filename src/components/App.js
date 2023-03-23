@@ -49,7 +49,6 @@ function App() {
           <Route path='/character/:characterId' element={
             <CharacterDetail className="detail-main"
               data={data}
-              setData={setData}
             >
 
             </CharacterDetail>}></Route>

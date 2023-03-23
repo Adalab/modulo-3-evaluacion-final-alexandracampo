@@ -1,10 +1,9 @@
 import { useLocation, matchPath } from 'react-router-dom';
 import notfound1 from '../images/notfound1.png'
-import getDataFromApi from '../services/Api';
 
 
 
-function CharacterDetail({ data, setData }) {
+function CharacterDetail({ data }) {
 
 
     // Si coincide, routeData es un objeto con mucha información útil
@@ -13,12 +12,6 @@ function CharacterDetail({ data, setData }) {
     const routeData = matchPath('/character/:characterId', pathname);
     const characterId = routeData !== null ? routeData.params.characterId : '';
 
-    /* if (!data.length > 0) {
-        getDataFromApi().then((responseData) => {
-            //Aquí estoy metiendo los datos de la respuesta de la Api en variable data:
-            setData(responseData)
-        })
-    } */
 
     const characterFound = data.find((character) => character.id === characterId);
 
@@ -38,9 +31,6 @@ function CharacterDetail({ data, setData }) {
                 </div>
             </div>
         );
-    } else {
-        <p>Error fatal, vendrá Dobby y 100 años de mala suerte</p>
     }
 }
-
 export default CharacterDetail;
