@@ -34,13 +34,14 @@ function Filters({ data, setErrorSearch, setSelectedHouse, errorSearch, setSearc
         <>
             <form className="box-form" onChange={handleSubmit}>
 
-                <fieldset className="filter-one">
-                    <label className="label-one">Busca por personaje:</label>
+                <fieldset className="fieldset">
+                    <label className="label">Search a character:</label>
                     <input className="input-name" value={searchName} onKeyDown={handleKeyDown} onChange={handleFilterName} placeholder="Harry..." type="text" />
                 </fieldset>
+                <span className="span">{errorSearch}</span>
 
-                <fieldset className="filter-two">
-                    <label className="label-two">Selecciona la casa:</label>
+                <fieldset className="fieldset">
+                    <label className="label">Select a house:</label>
                     <select className="select" onChange={handleFilterHouse}>
                         <option value="Gryffindor">Gryffindor</option>
                         <option value="Ravenclaw">Ravenclaw</option>
@@ -51,7 +52,7 @@ function Filters({ data, setErrorSearch, setSelectedHouse, errorSearch, setSearc
 
             </form>
 
-            <span>{errorSearch}</span>
+
         </>
     );
 }

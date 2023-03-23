@@ -16,7 +16,7 @@ function CharacterList({ data, searchName }) {
 
     return (
         <>
-            <ul>{renderList()}</ul>
+            <ul className="list-ul">{renderList()}</ul>
         </>
     );
 }
